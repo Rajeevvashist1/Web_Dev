@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UrbanBite Restaurant</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background: #0f172a;
+    color:white;
+}
+
+/* HEADER */
+header{
+    padding:25px;
+    text-align:center;
+    background:linear-gradient(135deg,#6366f1,#22d3ee);
+}
+
+header h1{
+    font-size:2.5rem;
+}
+
+header p{
+    opacity:0.9;
+}
+
+/* CONTROLS */
+.controls{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:30px;
+    flex-wrap:wrap;
+}
+
+input, select{
+    padding:12px 18px;
+    border-radius:8px;
+    border:none;
+    outline:none;
+    font-size:16px;
+}
+
+/* MENU GRID */
+.menu{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap:25px;
+    padding:40px;
+}
+
+/* CARD */
+.card{
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius:15px;
+    padding:20px;
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform: translateY(-8px) scale(1.02);
+    background: rgba(255,255,255,0.12);
+}
+
+.card h3{
+    font-size:1.3rem;
+    margin-bottom:5px;
+}
+
+.card p{
+    font-size:0.9rem;
+    opacity:0.8;
+}
+
+.price{
+    margin-top:10px;
+    font-weight:600;
+    color:#22d3ee;
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    padding:25px;
+    opacity:0.7;
+}
+
+/* MOBILE */
+@media(max-width:600px){
+    header h1{
+        font-size:1.8rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>🍽 Sushil da Dhaba</h1>
+    <p>Fresh • Fast • Delicious</p>
+</header>
+
+<div class="controls">
+    <input type="text" id="search" placeholder="Search food...">
+    <select id="category">
+        <option>All</option>
+        <option>Pizza</option>
+        <option>Burger</option>
+        <option>Sides</option>
+        <option>Drinks</option>
+    </select>
+</div>
+
+<div class="menu" id="menu"></div>
+
+<footer>
+    © 2026 UrbanBite — Designed for Premium Client Experience
+</footer>
+
+<script>
+const menuData = [
+    {name:"Margherita Pizza", price:299, category:"Pizza", desc:"Classic cheese & basil"},
+    {name:"Pepperoni Pizza", price:349, category:"Pizza", desc:"Spicy pepperoni"},
+    {name:"Veg Supreme Pizza", price:329, category:"Pizza", desc:"Loaded veggies"},
+    {name:"Cheese Burger", price:249, category:"Burger", desc:"Juicy cheddar burger"},
+    {name:"Chicken Burger", price:299, category:"Burger", desc:"Grilled chicken patty"},
+    {name:"French Fries", price:149, category:"Sides", desc:"Crispy fries"},
+    {name:"Garlic Bread", price:179, category:"Sides", desc:"Buttery toast"},
+    {name:"Cold Coffee", price:129, category:"Drinks", desc:"Creamy chilled coffee"},
+    {name:"Fresh Lime Soda", price:99, category:"Drinks", desc:"Refreshing fizz"}
+];
+
+const menuContainer = document.getElementById("menu");
+const searchInput = document.getElementById("search");
+const categorySelect = document.getElementById("category");
+
+function renderMenu(){
+    const search = searchInput.value.toLowerCase();
+    const category = categorySelect.value;
+
+    menuContainer.innerHTML = "";
+
+    const filtered = menuData.filter(item =>
+        (item.name.toLowerCase().includes(search)) &&
+        (category === "All" || item.category === category)
+    );
+
+    filtered.forEach(item=>{
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>${item.desc}</p>
+            <div class="price">₹${item.price}</div>
+        `;
+        menuContainer.appendChild(card);
+    });
+}
+
+searchInput.addEventListener("input", renderMenu);
+categorySelect.addEventListener("change", renderMenu);
+
+renderMenu();
+</script>
+
+</body>
+</html>

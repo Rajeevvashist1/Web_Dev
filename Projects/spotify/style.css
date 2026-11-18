@@ -1,0 +1,128 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #121212, #1a1a1a);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.container {
+  background-color: #1f1f1f;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  width: 90%;
+  max-width: 500px;
+}
+
+h1, h2 {
+  color: #1ed760;
+  margin-bottom: 10px;
+}
+
+input[type="text"], input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #333;
+  color: #fff;
+}
+
+button {
+  background-color: #1ed760;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #17a74d;
+  transform: scale(1.05);
+}
+
+a {
+  color: #1ed760;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.player {
+  background-color: #282828;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.album-art img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  transition: transform 0.5s ease;
+}
+
+.album-art img.playing {
+  animation: spin 6s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+#audio-player {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.controls button {
+  background-color: #535353;
+  margin: 5px;
+}
+
+.controls button:hover {
+  background-color: #3f3f3f;
+}
+
+.playlist {
+  margin-top: 30px;
+  text-align: left;
+}
+
+#song-list {
+  list-style: none;
+  padding: 0;
+}
+
+#song-list li {
+  background-color: #333;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#song-list li:hover {
+  background-color: #444;
+}
+
+#song-list li.playing {
+  background-color: #1ed760;
+  color: #1a1a1a;
+}
